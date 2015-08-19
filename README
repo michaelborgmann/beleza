@@ -1,0 +1,94 @@
+================================================================================
+                              Beleza SDL2 Demo
+
+                    Copyright (c) 2014 by Michael Borgmann
+
+                            www.michaelborgmann.com
+                          michaelborgmann@mailbox.org
+================================================================================
+
+Beleza is a portable SDL2 demo - proof of concept. Supported operating systems:
+    - Android
+    - iOS
+    - Linux
+    - Mac OS X
+    - Windows
+
+
+1. Build from Source
+--------------------------------------------------------------------------------
+
+   Beleza relies on a well estalished open source tools for longevity. However,
+   it may be troublesome to get your toolchain to work for some platfroms.
+
+   The build toolchain is:
+   - C++
+   - CMake
+   - Git
+
+
+1.1 Mac OS X
+
+    To build anything with Mac OS X you need XCode from Apple's App Store. I
+    also recommend to install MacPorts and HomeBrew, to easily install any open
+    source tools to your system.
+
+    Prebuild frameworks have to be installed to ~/Library/Frameworks, as:
+
+    - SDL2.framework
+    - SDL2_image.framework
+    - SDL2_ttf.framework
+    - SDL2_mixer.framework
+
+    If anything is in place you are ready to build the project:
+    - Traverse into the root directory of Beleza
+      $ cd beleza
+    - Create an external build directory and get into it
+      $ mkdir build.macosx
+      $ cd build.macox
+    - Create an Xcode project
+      $ cmake .. -G Xcode
+    - Build the Xcode project from command line
+      $ xcodebuild -configuration Release
+
+    If everything's fine, that's all for Mac OS X.
+        
+
+1.2 iOS
+
+    Building Beleza for iOS (device or simulator) is anything but trivial.
+    As for OSX you also rely on Xcode, and have to download it from Apple's App
+    Store. Anything additional open source libraries have to be custom build, as
+    there exist nothing prebuild to rely on.
+
+    I tried to simplify all the complicated things by providing bash scripts.
+
+    At first you need all the SDL sources. Simply run the sdl2.sh scripts
+    $ scripts/sdl2.sh
+
+    Then you have to build all the SDL sources, using another script:
+    $ . scripts/ios-sdl2.sh
+    
+    As I use CMake as build tool, I decided to use ios-cmake. To set up an alias
+    in your shell run the next script (and check with the alias command):
+    $ source scripts/ios-cmake.sh
+
+    Now, you should be ready to build the project for iOS
+    - Travere into the Beleza directory
+      $ cd beleza
+    - Create an external build directory and get into it
+      $ mkdir build.ios
+      $ cd build.ios
+    - Create an Xcode project
+      $ ios-cmake ..
+    - Build the Xcode project from command line 
+      $ xcodebuild -sdk iphonesimulator -configuration Release
+
+    NOTE: You may get a link error due to an Xcode bug. Fix it with symlinks:
+    $ ln -s Release-iphonesimulator Release
+    $ ln -s Debug-iphonesimulator Debug
+
+.------------------------------------------------------------------------------.
+|''':''''|'''':''''|'''':''''|'''':''''|'''':''''|'''':''''|'''':''''|'''':''''|
+|       10        20        30        40        50        60        70        8|
+|______________________________________________________________________________|
